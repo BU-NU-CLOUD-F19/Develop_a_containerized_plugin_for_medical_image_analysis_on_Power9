@@ -1,4 +1,4 @@
-# Develop_a_containerized_plugin_for_medical_image_analysis_on_Power9
+# Develop a containerized plugin for medical image analysis on Power9
 
 # Vision and Goals
 
