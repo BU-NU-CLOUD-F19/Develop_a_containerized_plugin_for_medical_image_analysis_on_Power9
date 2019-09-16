@@ -51,6 +51,9 @@ Our team will make the FreeSurfer container compatible with ChRIS over the cours
 
 # Release Planning
 * Release #1 (2 Weeks)
-  - Compile FreeSurfer on x86 (Ubunutu or CentOS)
+  - Compile FreeSurfer on x86 (Ubuntu or CentOS)
   - Containerize FreeSurfer on x86
   - Cross compile x86 to PowerPC architecture
+* Release #2
+  - Flag that allows ChRIS to pick architecture on MOC.
+  
