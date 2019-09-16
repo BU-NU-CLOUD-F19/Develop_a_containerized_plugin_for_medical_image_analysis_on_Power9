@@ -27,14 +27,28 @@ High Level Outline:
   - Compile FreeSurfer on x86 (Ubunutu or CentOS)
   - Containerize FreeSurfer on x86
   - Cross compile x86 to PowerPC
-* tbd...
+
+FreeSurfer - Open source software suite for processing and analyzing brain and MRI images. This is what will be containerized to run on PowerPC
+
+Linux Server running CentOS - This platform is currently used for FreeSurfer computation. By switching to the Power9 computers, will decrease time of computation.
+
+Client - ChRIS - MOC - Review Data - The end goal is to have a containerized FreeSurfer that is compatible with ChRIS and runs on PowerPC. This will allow users of the ChRIS client to have access to much more powerful computers for the image processing.
+ 
+
+
+
+
+ChRIS - ChRIS is a collaborative project between BCH and Red Hat. It is an open source framework that utilizes cloud technologies to bring medical analytics and allows health organizations to own their data and benefit from public computational power.
+
+Our team will make the FreeSurfer container compatible with ChRIS over the course of the semester as we learn more about the ChRIS platform. 
+
 
 # Acceptance Criteria
 * The minimum acceptance critiera is to compile (at least some components of) FreeSurfer to the PowerPC architecture and containerize it and create a ChRIS 'app' that uses the PowerPC FreeSurfer container
 * Stretch goal: tbd
 
 # Release Planning
-* Release #1
+* Release #1 (2 Weeks)
   - Compile FreeSurfer on x86 (Ubunutu or CentOS)
   - Containerize FreeSurfer on x86
   - Cross compile x86 to PowerPC architecture
