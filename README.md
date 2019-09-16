@@ -30,7 +30,7 @@ High Level Outline:
 
 FreeSurfer - Open source software suite for processing and analyzing brain and MRI images. This is what will be containerized to run on PowerPC
 
-Linux Server running CentOS - This platform is currently used for FreeSurfer computation. By switching to the Power9 computers, will decrease time of computation.
+Linux Server running CentOS - This platform is currently used for FreeSurfer computation. Switching to the Power9 computers will decrease time of computation.
 
 Client - ChRIS - MOC - Review Data - The end goal is to have a containerized FreeSurfer that is compatible with ChRIS and runs on PowerPC. This will allow users of the ChRIS client to have access to much more powerful computers for the image processing.
  
