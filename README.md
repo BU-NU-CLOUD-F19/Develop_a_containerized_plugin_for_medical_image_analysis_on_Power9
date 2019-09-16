@@ -15,7 +15,7 @@ The end user of our plugin will be hospitals that need to do computationally int
 It targets:
 * Hospitals that need image processing (in the Greater Boston Area)
 # Scope and Features
-* Containerize FreeSurfer as a ChRIS plugin (?)
+* Containerize FreeSurfer as a ChRIS plugin
 * Compile FreeSurfer to PowerPC architecture
 * Utilize Power9 machines on the MOC
 * Add flag in ChRIS internals to denote which architecture to use on the MOC
@@ -50,7 +50,7 @@ Our team will make the FreeSurfer container compatible with ChRIS over the cours
 * Stretch goal: tbd
 
 # Release Planning
-* Release #1 (2 Weeks)
+* Release #1 (4 Weeks)
   - Compile FreeSurfer on x86 (Ubuntu or CentOS)
   - Containerize FreeSurfer on x86
   - Cross compile x86 to PowerPC architecture
