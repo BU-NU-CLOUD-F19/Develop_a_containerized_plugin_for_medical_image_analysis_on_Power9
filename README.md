@@ -34,7 +34,7 @@ Linux Server running CentOS - This platform is currently used for FreeSurfer com
 
 Client - ChRIS - MOC - Review Data - The end goal is to have a containerized FreeSurfer that is compatible with ChRIS and runs on PowerPC. This will allow users of the ChRIS client to have access to much more powerful computers for the image processing.
  
-
+![Product Structure](https://raw.githubusercontent.com/rschneid1/hello-world/master/images/Diagram.png)
 
 
 
