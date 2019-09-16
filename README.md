@@ -42,6 +42,8 @@ ChRIS - ChRIS is a collaborative project between BCH and Red Hat. It is an open 
 
 Our team will make the FreeSurfer container compatible with ChRIS over the course of the semester as we learn more about the ChRIS platform. 
 
+![ChRIS platform overview](https://raw.githubusercontent.com/rschneid1/hello-world/master/images/Image%20from%20iOS.jpg)
+
 
 # Acceptance Criteria
 * The minimum acceptance critiera is to compile (at least some components of) FreeSurfer to the PowerPC architecture and containerize it and create a ChRIS 'app' that uses the PowerPC FreeSurfer container
