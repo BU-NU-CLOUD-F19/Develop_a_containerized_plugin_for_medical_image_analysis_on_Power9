@@ -14,6 +14,7 @@ The end user of our plugin will be hospitals that need to do computationally int
 
 It targets:
 * Hospitals that need image processing (in the Greater Boston Area)
+
 # Scope and Features
 * Containerize FreeSurfer as a ChRIS plugin
 * Compile FreeSurfer to PowerPC architecture
@@ -30,7 +31,7 @@ High Level Outline:
 
 FreeSurfer - Open source software suite for processing and analyzing brain and MRI images. This is what will be containerized to run on PowerPC.
 
-Linux Server running CentOS - This platform is currently used for FreeSurfer computation. Switching to the Power9 computers will decrease time of computation and allow for a higher volume of requests.
+Linux Server running CentOS - This platform is currently used for FreeSurfer computation. Switching to the Power9 computers will decrease the time taken for computation and allow for a higher volume of requests.
 
 Client - ChRIS - MOC - Review Data - The end goal is to have a containerized FreeSurfer that is compatible with ChRIS and runs on PowerPC. This will allow users of the ChRIS client to have access to much more powerful computers for the image processing.
  
@@ -38,7 +39,7 @@ Client - ChRIS - MOC - Review Data - The end goal is to have a containerized Fre
 
 
 
-ChRIS - ChRIS is a collaborative project between BCH and Red Hat. It is an open source framework that utilizes cloud technologies to bring medical analytics and allows health organizations to own their data and benefit from public computational power.
+ChRIS - ChRIS is a collaborative project between Boston Children's Hospital and Red Hat. It is an open source framework that utilizes cloud technologies to bring medical analytics and allows health organizations to own their data and benefit from public computational power.
 
 Our team will make the FreeSurfer container compatible with ChRIS over the course of the semester as we learn more about the ChRIS platform. 
 
@@ -46,8 +47,8 @@ Our team will make the FreeSurfer container compatible with ChRIS over the cours
 
 
 # Acceptance Criteria
-* The minimum acceptance critiera is to compile (at least some components of) FreeSurfer to the PowerPC architecture and containerize it and create a ChRIS 'app' that uses the PowerPC FreeSurfer container
-* Stretch goal: tbd
+* The minimum acceptance critiera is to compile (at least some components of) FreeSurfer to the PowerPC architecture and containerize it, and create a ChRIS 'app' that uses the PowerPC FreeSurfer container.
+* Stretch goal: TBD
 
 # Release Planning
 * Release #1 (in 2 Weeks)
@@ -58,5 +59,5 @@ Our team will make the FreeSurfer container compatible with ChRIS over the cours
   - Cross compile x86 to PowerPC architecture
   
 * Release #3 (in 6 weeks)
-  - Flag that allows ChRIS to pick architecture on MOC.
+  - Flag that allows ChRIS to pick which architecture to use on MOC.
   
