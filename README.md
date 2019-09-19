@@ -1,5 +1,23 @@
 # Develop a containerized plugin for medical image analysis on Power9
 
+# Background
+Our project is to create a plugin for ChRIS, an existing system that allows the end user i.e. Doctors and Neuro-researchers to upload their image files to the system, run jobs on the images, and get the results back.
+
+To understand the goals and scope of our project, one needs to understand the architecture of the ChRIS platform.  
+The ChRIS documentation can be found here: https://github.com/FNNDSC/CHRIS_docs
+
+![ChRIS architecture](https://github.com/FNNDSC/CHRIS_docs/raw/master/chris_architecture_overview.png)
+
+The typical dataflow of ChRIS is as follows:  
+1. The user uploads their images (data) via the web interface
+2. The data is sent to the server (labelled as ChRIS in the image)
+3. The data can be saved in the database here (optional??? idk)
+4. ChRIS plugin??? Research this
+5. The data is then sent from the database (or directly from server memory??? idk) to the MOC
+6. The MOC spins up a cluster. The user can specify what computing environment they want to use for their cluster.
+7. blah blah
+tbc
+
 # Vision and Goals
 We will creating a plugin for ChRIS that enables end-users to do their image processing using FreeSurfer on Power9 computers in the MOC.
 
