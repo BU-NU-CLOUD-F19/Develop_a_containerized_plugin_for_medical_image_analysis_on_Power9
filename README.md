@@ -10,7 +10,7 @@ The ChRIS documentation can be found here: https://github.com/FNNDSC/CHRIS_docs
 
 The typical dataflow of ChRIS is as follows:  
 1. The user uploads their images (data) via the web interface
-2. The data is sent to the server (labelled as ChRIS in the image)
+2. The data is sent to the server labelled as ChRIS within the image
 3. The data can be saved in the database here (optional??? idk)
 4. ChRIS plugin??? Research this
 5. The data is then sent from the database (or directly from server memory??? idk) to the MOC
@@ -19,7 +19,7 @@ The typical dataflow of ChRIS is as follows:
 tbc
 
 # Vision and Goals
-We will be creating a plugin for ChRIS that enables end-users to do their image processing using FreeSurfer on Power9 computers in the MOC.
+We will be creating a plugin for ChRIS that enables end-users to do their image processing using FreeSurfer on Power9 computers in the Mass Open Cloud.
 
 High level goals include:
 * A container with FreeSurfer compiled for the PowerPC architecture
@@ -47,7 +47,6 @@ It does not target:
 * Add flag in ChRIS internals to denote which architecture to use on the MOC
 
 # Solution Concept
-
 High Level Outline:
 * Create a container with FreeSurfer compiled to PowerPC architecture
   - Compile FreeSurfer on x86 (Ubunutu or CentOS)
@@ -64,7 +63,7 @@ Client - ChRIS - MOC - Review Data - The end goal is to have a containerized Fre
 
 
 
-ChRIS - ChRIS is a collaborative project between Boston Children's Hospital and Red Hat. It is an open source framework that utilizes cloud technologies to bring medical analytics and allows health organizations to own their data and benefit from public computational power.
+ChRIS - ChRIS is a collaborative project between Boston Children's Hospital and Red Hat. It is an open source framework that utilizes cloud technologies to bring medical analytics and allows health organizations to benefit from public computational power in addition to owning their data.
 
 Our team will make the FreeSurfer container compatible with ChRIS over the course of the semester as we learn more about the ChRIS platform. 
 
@@ -84,5 +83,5 @@ Our team will make the FreeSurfer container compatible with ChRIS over the cours
   - Cross compile x86 to PowerPC architecture
   
 * Release #3 (in 6 weeks)
-  - Flag that allows ChRIS to pick which architecture to use on MOC.
+  - Instantiate a flag that allows ChRIS to pick which architecture to use on MOC.
   
