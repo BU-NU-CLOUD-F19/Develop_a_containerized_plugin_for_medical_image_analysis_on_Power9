@@ -19,7 +19,7 @@ The typical dataflow of ChRIS is as follows:
 tbc
 
 # Vision and Goals
-We will creating a plugin for ChRIS that enables end-users to do their image processing using FreeSurfer on Power9 computers in the MOC.
+We will be creating a plugin for ChRIS that enables end-users to do their image processing using FreeSurfer on Power9 computers in the MOC.
 
 High level goals include:
 * A container with FreeSurfer compiled for the PowerPC architecture
@@ -31,13 +31,13 @@ High level goals include:
 
 
 # Users and Personas
-This plug-in will be used by Doctors and Technicians who currently use FreeSurfer to process their patients brain MRI images. This project targets those in the Greater Boston Area; however with the addition of the Power9 computers, the long-term goal is that many more Doctors will be able to process their requests using the plug-in.
+The plug-in will be used by Doctors and Technicians that currently use FreeSurfer to process their patients' brain MRI images. The project targets those in the Greater Boston Area; however with the addition of the Power9 computers, the long-term goal is that, in addition, Doctors beyond the Greater Boston Area will have the ability to process their requests using the plug-in.
 
 It does not target:
 * Those who do not use FreeSurfer. This is not a general purpose project, it is only meant for                
   FreeSurfer.
 * Users of FreeSurfer who do not use the MOC and ChRIS. There may be other Doctors and Technicians      
-  that use FreeSurfer on the MOC but are not users of the ChRIS platform. This project will only effect those on the ChRIS
+  that use FreeSurfer on the MOC but are not users of the ChRIS platform. This project will only affect those on the ChRIS
   system.
 
 # Scope and Features
