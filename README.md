@@ -1,7 +1,7 @@
 # Develop a containerized plugin for medical image analysis on Power9
 
 # Background
-Our project is to create a plugin for ChRIS, an existing system that allows the end user i.e. Doctors and Neuro-researchers to upload their image files to the system, run jobs on the images, and get the results back.
+Our project is to create a plugin for ChRIS, an existing system, that allows the end user (i.e. Doctors and Neuro-Researchers) to upload their image files to the system, run jobs on the images, and get the results back.
 
 To understand the goals and scope of our project, one needs to understand the architecture of the ChRIS platform.  
 The ChRIS documentation can be found here: https://github.com/FNNDSC/CHRIS_docs
@@ -22,16 +22,16 @@ tbc
 We will be creating a plugin for ChRIS that enables end-users to do their image processing using FreeSurfer on Power9 computers in the Mass Open Cloud.
 
 High level goals include:
-* A container with FreeSurfer compiled for the PowerPC architecture
-* Ensuring FreeSurfer container runs efficiently with PowerPC architecture
-* A ChRIS plugin that uses this container
-* Ability for end users to select which architecture they want to run FreeSurfer on
+* A container with FreeSurfer compiled for PowerPC architecture
+* Ensuring the FreeSurfer container runs efficiently with PowerPC architecture
+* A ChRIS plugin that uses the FreeSurfer container
+* Ability for end-users to select which architecture they want to run FreeSurfer on
 * Integration with the ChRIS client (allowing users to use ChRIS to run their data on the MOC and
   get their results delivered in efficient time).
 
 
 # Users and Personas
-The plug-in will be used by Doctors and Technicians that currently use FreeSurfer to process their patients' brain MRI images. The project targets those in the Greater Boston Area; however with the addition of the Power9 computers, the long-term goal is that, in addition, Doctors beyond the Greater Boston Area will have the ability to process their requests using the plug-in.
+The plugin will be used by Doctors and Technicians that currently use FreeSurfer to process their patients' brain MRI images. The project targets those in the Greater Boston Area; however with the addition of the Power9 computers, the long-term goal is that Doctors beyond the Greater Boston Area will have the ability to process their requests using the plugin.
 
 It does not target:
 * Those who do not use FreeSurfer. This is not a general purpose project, it is only meant for                
@@ -44,7 +44,7 @@ It does not target:
 * Containerize FreeSurfer as a ChRIS plugin
 * Compile FreeSurfer to PowerPC architecture
 * Utilize Power9 machines on the MOC
-* Add flag in ChRIS internals to denote which architecture to use on the MOC
+* Add a flag in ChRIS internals to denote which architecture to use on the MOC
 
 # Solution Concept
 High Level Outline:
