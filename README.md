@@ -96,7 +96,10 @@ It is likely that we will need to discuss more specific design implications as w
 - What exactly is the function of the ChRIS plugin?
 
 # Risks (or opportunities?)
-- 
+- Lack of knowledge/general understanding (aka learning curve)
+
+# Sprint Demo Presentations
+- Sprint 1 Demo: https://docs.google.com/presentation/d/1gTr5xhz9U68FB50PdQvl90KYEqc4Fye6mlfKmVhlSXU/edit?usp=sharing
   
   
   
