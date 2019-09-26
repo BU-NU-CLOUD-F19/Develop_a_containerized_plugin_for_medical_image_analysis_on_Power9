@@ -43,10 +43,10 @@ It does not target:
   system.
 
 # Scope and Features
-* Containerize FreeSurfer as a ChRIS plugin
-* Compile FreeSurfer to PowerPC architecture
-* Utilize Power9 machines on the MOC
-* Add a flag in ChRIS internals to denote which architecture to use on the MOC
+* Feature: FreeSurfer is containerized as a ChRIS plugin
+* Feature: FreeSurfer compiles to PowerPC architecture
+* Feature: Flag in plugin --> denotes which architecture to use on the MOC (how can we make this more specific)
+* Feature: ChRIS is able to read and run PowerPC images on PowerPC machines and Intel images on Intel machines
 
 # Solution Concept
 
