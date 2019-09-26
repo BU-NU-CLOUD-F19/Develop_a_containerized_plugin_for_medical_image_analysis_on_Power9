@@ -93,6 +93,7 @@ It is likely that we will need to discuss more specific design implications as w
 # Open Questions
 - What is cross-compiling and why should we potentially use it to compile FreeSurfer on PowerPC architecture?
 - How do we use Docker to make a container? How do we use Docker Hub?
+- What exactly is the function of the ChRIS plugin?
 
 # Risks (or opportunities?)
 - 
