@@ -10,9 +10,13 @@ The ChRIS documentation can be found here: https://github.com/FNNDSC/CHRIS_docs
 
 The typical dataflow of ChRIS is as follows:  
 1. The user uploads their images (data) via the web interface
-2. The data is sent to the server labelled as ChRIS within the image and stored in the database
-3. When a user wants to run a job, the ChRIS server sends the data to the MOC. The MOC creates a container and pulls the ChRIS plugin (that corresponds to the job requested) and runs the job.
-4. The MOC communicates results to the server and the server communicates the results to the client
+2. The data is sent to the server labelled as ChRIS within the image
+3. The data can be saved in the database here (optional??? idk)
+4. ChRIS plugin??? Research this
+5. The data is then sent from the database (or directly from server memory??? idk) to the MOC
+6. The MOC spins up a cluster. The user can specify what computing environment they want to use for their cluster.
+7. blah blah
+tbc
 
 # Vision and Goals
 We will be creating a plugin for ChRIS that enables end-users to do their image processing using FreeSurfer on Power9 computers in the Mass Open Cloud.
@@ -38,7 +42,7 @@ It does not target:
 
 # Scope and Features
 * Containerize FreeSurfer as a ChRIS plugin
-* Compile FreeSurfer to PowerPC architecture
+* Compile FreeSurfer and its container to PowerPC architecture
 * Utilize Power9 machines on the MOC
 * Add a flag in ChRIS internals to denote which architecture to use on the MOC
 
@@ -49,7 +53,7 @@ High Level Outline:
   - Containerize FreeSurfer on x86
   - Cross compile x86 to PowerPC
 
-FreeSurfer - Open source software suite for processing and analyzing brain and MRI images. This is what will be containerized to run on PowerPC.
+FreeSurfer - Open source software suite for processing and analyzing brain and MRI images. This is what will be containerized to run on PowerPC. 
 
 Linux Server running CentOS - This platform is currently used for FreeSurfer computation. Switching to the Power9 computers will decrease the time taken for computation and allow for a higher volume of requests.
 
