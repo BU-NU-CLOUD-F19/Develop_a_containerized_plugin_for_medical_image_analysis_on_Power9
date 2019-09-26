@@ -67,7 +67,7 @@ Why PowerPC architecture? The goal is to successful compile the containerized Fr
 
 Why is it containerized? A ChRIS plugin is a container that is run on the MOC machines. We need to containerize FreeSurfer so that we can use it in a ChRIS plugin. Containers allow us to run our ChRIS plugin on machines in the cloud without having to worry about the environment. 
 
-Why are we using Docker? Docker is popular for creating and building software inside containers, which is what we need to do.
+Why are we using Docker? We are using Docker because the existing ChRIS infrastructure uses Docker and we are using the existing ChRIS plugin template. The ChRIS infrastructure also uses OpenShift and our mentor said we should not concern ourselves with the inner workings of this. 
 
 Why are we cross-compiling onto PowerPC? Cross compiling is the process of compiling code for multiple platforms from one host. We may cross-compile because we are not sure what our capabilities will be on the MOC Power9 machines (can we ssh? will we have proper permissions? etc.). Cross-compiling gives us the ability to compile code on our personal machines for the PowerPC architecture. We are not yet sure if we will try to cross-compile or just compile natively on PowerPC, but we want to note cross-compiling as a possiblity.
  
