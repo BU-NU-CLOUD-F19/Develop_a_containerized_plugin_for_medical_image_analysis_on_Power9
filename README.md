@@ -21,7 +21,7 @@ The typical dataflow of ChRIS is as follows:
 # Vision and Goals
 We will be creating a containerized plugin for ChRIS that enables end-users to do their image processing using FreeSurfer on Power9 computers in the Mass Open Cloud.
 
-(FreeSurfer is a software package used for processing and analyzing buman brain MRI images. This is what will be containerized to run on PowerPC.)
+(FreeSurfer is a software package used for processing and analyzing human brain MRI images. This is what will be containerized to run on PowerPC.)
 
 High level goals include:
 * A container with FreeSurfer compiled for PowerPC architecture
