@@ -80,6 +80,7 @@ It is likely that we will need to discuss more specific design implications as w
 * Stretch goal: Compile all of FreeSurfer to the PowerPC architecture. This is a stretch goal because some parts of FreeSurfer rely on third-party libraries that may not be compatible with PowerPC architecture.
 
 # Release Planning
+Sprint planning is conducted on Taiga, which we are still learning how to use: https://tree.taiga.io/project/onesphore-template-for-cloud-computing-fall-2019-bu-3/taskboard/demo-1-7
 * Release #1 (in 2 Weeks)
   - Compile FreeSurfer on x86 (Ubuntu or CentOS)
   - Containerize FreeSurfer on x86
