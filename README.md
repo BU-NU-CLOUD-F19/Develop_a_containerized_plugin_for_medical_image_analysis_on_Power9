@@ -45,8 +45,10 @@ It does not target:
 # Scope and Features
 * Feature: FreeSurfer is containerized as a ChRIS plugin
 * Feature: FreeSurfer compiles to PowerPC architecture
-* Feature: Flag in plugin --> denotes which architecture to use on the MOC (how can we make this more specific)
-* Feature: ChRIS is able to read and run PowerPC images on PowerPC machines and Intel images on Intel machines
+* Feature: Flag in plugin --> denotes which architecture (PowerPC or x86) to use on the MOC 
+* Feature: ChRIS is able to read PowerPC images on PowerPC machines and x86 images on x86 machines 
+
+* Out of Scope: Inner workings of OpenShift, how ChRIS stores information, and how the MOC stores information.
 
 # Solution Concept
 
