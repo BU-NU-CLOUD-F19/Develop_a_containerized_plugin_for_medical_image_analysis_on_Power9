@@ -63,7 +63,7 @@ High Level Outline:
   
 ## Design Implications and Discussion:
 
-Why PowerPC architecture? The goal is to successful compile the containerized FreeSurfer plugin with PowerPC architecture because this architecture will decrease computation time. Power9 machines are optimzed for performing matrix operations, so using Power9 machines should give FreeSurfer a speed increase.
+Why PowerPC architecture? The goal is to successfully compile the containerized FreeSurfer plugin with PowerPC architecture because this architecture will decrease computation time. Power9 machines are optimzed for performing matrix operations, so using Power9 machines should give FreeSurfer a speed increase.
 
 Why is it containerized? A ChRIS plugin is a container that is run on the MOC machines. We need to containerize FreeSurfer so that we can use it in a ChRIS plugin. Containers allow us to run our ChRIS plugin on machines in the cloud without having to worry about the environment. 
 
