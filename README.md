@@ -102,6 +102,7 @@ Sprint planning is conducted on Taiga, which we are still learning how to use: h
 
 # Sprint Demo Presentations
 - Sprint 1 Demo: https://docs.google.com/presentation/d/1gTr5xhz9U68FB50PdQvl90KYEqc4Fye6mlfKmVhlSXU/edit?usp=sharing
+- Sprint 2 Demo: https://docs.google.com/presentation/d/1QpS4oyl4nnCyd4yITBuRRuyBGb8_NXvphm98m-eAIZU/edit#slide=id.g63057c147e_0_6
   
   
   
