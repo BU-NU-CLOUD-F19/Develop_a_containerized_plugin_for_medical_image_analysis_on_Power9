@@ -105,7 +105,7 @@ Sprint planning is conducted on Taiga, which we are still learning how to use: h
 - Sprint 2 Demo: https://docs.google.com/presentation/d/1QpS4oyl4nnCyd4yITBuRRuyBGb8_NXvphm98m-eAIZU/edit?usp=sharing
 - Sprint 3 Demo: https://docs.google.com/presentation/d/1Pt14AbmzgGssEnWz1327LCw7CKAM8O3XLj8-ODPceeg/edit?usp=sharing
 - Sprint 4 Demo: https://docs.google.com/presentation/d/19zGiUAN0KiV_gWRhAXAceXLDhsOxsDNBWPam9VT9hFc/edit?usp=sharing
-- Sprint 5 Demo: 
+- Sprint 5 Demo: https://docs.google.com/presentation/d/13li_IvCtlmfqs_kvQWMxBVQsnhc62L5bN8tt4nnNJCk/edit?usp=sharing
 
 # Google Cloud Spanner Presentation
 https://docs.google.com/presentation/d/1r1mF2JLrkIEE0HnX7CcssxO__eYmr4oz3VWf_d6U6EU/edit?usp=sharing
