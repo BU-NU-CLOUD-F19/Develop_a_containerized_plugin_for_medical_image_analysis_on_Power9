@@ -1,0 +1,153 @@
+{
+  "kind": "Template",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "pfioh-openshift",
+    "annotations": {
+      "description": "Creates pfioh on OpenShift",
+      "tags": ""
+    }
+  },
+  "objects": [{
+      "apiVersion": "v1",
+      "kind": "DeploymentConfig",
+      "metadata": {
+        "labels": {
+          "app": "pfioh"
+        },
+        "name": "pfioh"
+      },
+      "spec": {
+        "replicas": 1,
+        "selector": {
+          "app": "pfioh",
+          "deploymentconfig": "pfioh"
+        },
+        "strategy": {
+          "activeDeadlineSeconds": 21600,
+          "resources": {},
+          "rollingParams": {
+            "maxSurge": "25%",
+            "maxUnavailable": "25%",
+            "timeoutSeconds": 600
+          },
+          "type": "Rolling"
+        },
+        "template": {
+          "metadata": {
+            "labels": {
+              "app": "pfioh",
+              "deploymentconfig": "pfioh"
+            }
+          },
+          "spec": {
+            "containers": [{
+              "command": [
+                "/usr/bin/pfioh",
+                "--forever",
+                "--httpResponse",
+                "--swift-storage",
+                "--createDirsAsNeeded",
+                "--enableTokenAuth",
+                "--tokenPath=/etc/pfioh/auth/pfioh_config.cfg"
+              ],
+              "image": "fnndsc/pfioh",
+              "imagePullPolicy": "Always",
+              "name": "pfioh",
+              "ports": [{
+                "containerPort": 5055,
+                "protocol": "TCP"
+              }],
+              "resources": {
+                "limits": {
+                  "memory": "1024Mi",
+                  "cpu": "2000m"
+                },
+                "requests": {
+                  "memory": "150Mi",
+                  "cpu": "250m"
+                }
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "volumeMounts": [
+                {
+                  "mountPath": "/etc/swift",
+                  "name": "swift-credentials",
+                  "readOnly": true
+                },
+                {
+                  "name": "pfioh-config",
+                  "mountPath": "/etc/pfioh/auth",
+                  "readOnly": true
+                }
+              ]
+            }],
+            "dnsPolicy": "ClusterFirst",
+            "restartPolicy": "Always",
+            "terminationGracePeriodSeconds": 30,
+            "volumes": [
+              {
+                "name": "swift-credentials",
+                "secret": {
+                  "defaultMode": 420,
+                  "secretName": "swift-credentials"
+                }
+              },
+              {
+                "name": "pfioh-config",
+                "secret": {
+                  "secretName": "pfioh-config"
+                }
+            }]
+          }
+        },
+        "test": false,
+        "triggers": [{
+          "type": "ConfigChange"
+        }]
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+        "labels": {
+          "app": "pfioh"
+        },
+        "name": "pfioh"
+      },
+      "spec": {
+        "ports": [{
+          "name": "5055-tcp",
+          "port": 5055,
+          "protocol": "TCP",
+          "targetPort": 5055
+        }],
+        "selector": {
+          "app": "pfioh",
+          "deploymentconfig": "pfioh"
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Route",
+      "metadata": {
+        "name": "pfioh"
+      },
+      "spec": {
+        "port": {
+          "targetPort": "5055-tcp"
+        },
+        "to": {
+          "kind": "Service",
+          "name": "pfioh",
+          "weight": 100
+        }
+      }
+    }
+  ],
+  "labels": {
+    "template": "application-template-pfioh-openshift"
+  }
+}

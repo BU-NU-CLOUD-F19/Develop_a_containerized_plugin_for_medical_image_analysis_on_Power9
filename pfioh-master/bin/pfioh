@@ -1,0 +1,367 @@
+#!/usr/bin/env python3
+#
+# (c) 2017- Fetal-Neonatal Neuroimaging & Developmental Science Center
+#                   Boston Children's Hospital
+#
+#                        http://fnndsc.org
+#                        dev@babyMRI.org
+#
+
+import  sys
+import  os
+import  socket
+from    argparse            import RawTextHelpFormatter
+from    argparse            import ArgumentParser
+from    distutils.sysconfig import get_python_lib
+
+import  pudb
+
+# The following convolutions are necessary to accommodate both
+# development and deployed instances of the 'pfioh.py' module
+# and related dependencies.
+sys.path.insert(1, os.path.join(os.path.dirname(__file__), '../pfioh'))
+try:
+    import pfioh
+    import mount_dir    as MountDir
+    import swift_store  as SwiftStore
+except:
+    import pfioh
+    from   pfioh.mount_dir      import MountDir         as MountDir
+    from   pfioh.swift_store    import SwiftStore       as SwiftStore
+
+from    pfmisc._colors             import Colors
+
+str_defIP   = [l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_DGRAM)]][0][1]]) if l][0][0]
+str_version = "2.2.0.6"
+str_desc    = Colors.CYAN + """
+        __ _       _
+       / _(_)     | |
+ _ __ | |_ _  ___ | |__
+| '_ \|  _| |/ _ \| '_ \\
+| |_) | | | | (_) | | | |
+| .__/|_| |_|\___/|_| |_|
+| |
+|_|
+
+
+                            Path-File-IO-over-HTTP
+
+           A simple IO handler that pushes/pulls file paths over http
+
+        (c) 2017+ Fetal-Neonatal Neuroimaging & Developmental Science Center
+                            Boston Children's Hospital
+
+                               http://fnndsc.org
+                                dev@babyMRI.org
+
+
+                              -- version """ + \
+             Colors.YELLOW + str_version + Colors.CYAN + """ --
+
+    'pfioh' is a file/dir transfer tool, akin conceptually to 'ftp' or 'scp',
+    that allows software agents to perform useful file transfers over http.
+
+    'pfioh' handles HTTP REST-like requests on a given port -- it can accept
+    incoming file data from a client, and can also return server-side file trees
+    to a client.
+
+    'pfioh' can also zip/unzip file trees so that entire paths can be easily
+    transferred.
+    
+""" + \
+        Colors.BLINK_RED +  """
+        
+              +---------------------------------------------------------+
+              | Use '--enableTokenAuth' and '--tokenPath <tokenPath>'   |
+              |         arguments for secure communication.             |    
+              +---------------------------------------------------------+
+
+""" + Colors.NO_COLOUR
+
+str_historyNotes = Colors.YELLOW + """
+
+    HISTORY
+    -------
+    
+    1 June 2017: v1.2.0
+    o Add internal key-coded storage lookup.
+
+    May 2019
+    o Updates for swift usage *and* local FS use.
+
+    NOTES:
+    ------
+    o The text 'path' in an action verb triggers hidden behavior!
+
+
+"""
+
+def synopsis(ab_shortOnly = False):
+    scriptName = os.path.basename(sys.argv[0])
+    shortSynopsis =  '''
+    NAME
+
+	    pfioh 
+
+        - path/file IO handler
+
+    SYNOPSIS
+
+            pfioh                                                   \\
+                [--ip <IPofServer>]                                 \\
+                [--port <port>]                                     \\
+                [--desc]                                            \\
+                [--synopsis]                                        \\
+                [--forever]                                         \\
+                [--storeBase <storagePath>]                         \\
+                [--verbosity <level>]                               \\
+                [--swift-storage]                                   \\
+                [--test]                                            \\
+                [--httpResponse]                                    \\
+                [--createDirsAsNeeded]                              \\
+                [--enableTokenAuth]                                 \\
+                [--tokenPath <tokenPath>]                           \\
+                [--version]
+
+    BRIEF EXAMPLE
+
+            pfioh                                                   \\
+                --forever                                           \\
+                --port 5055                                         \\
+                --storeBase=/tmp                                    \\
+                --httpResponse                                      \\
+                --createDirsAsNeeded                                \\
+                --verbosity 1                                       \\
+                --ip %s
+
+    ''' % str_defIP
+
+    description =  '''
+    DESCRIPTION
+
+        ``pfioh`` is a path/file IO handler, part of the ``pf`` suite of 
+        applications, and used mostly in the context of ChRIS.
+
+        Typically ``pfioh`` is launched on a "remote" host where it 
+        listens for directives directing file IO. Mostly, a single zip
+        containing a directory structure with files to process is
+        transmitted. The zip is unpacked and the companion service,
+        ``pman`` is used to process the contents. Resultant output
+        is stored in its own directory. When processing is complete,
+        ``pfioh`` zips up the output directory (tree) and transmits
+        this back to an origin location.
+
+    ARGS
+
+        [--ip <IP>]                            
+
+        The IP interface on which to listen. Defaults to %s.
+
+        [--port <port>]
+        The port on which to listen. Defaults to '5055'.
+
+        [--forever]
+        Start service and do not terminate.
+
+        [--httpResponse]
+        Send return strings as HTTP formatted replies with content-type html.
+
+        [--storeBase <storagePath>]
+        A file system location in the network space accessible to ``pfioh``
+        that is used to unpack received files and also store results of
+        processing.
+
+        [--createDirsAsNeeded]
+        If specified, create dirs in the base storage as needed.
+
+        [--enableTokenAuth]
+        Enables token based authorization and can be configured to look for a .ini 
+        file or an openshift secret.
+
+        [--tokenPath <tokenPath>]
+        Specify the absolute path to the token in the file system.
+        By default, this looks for the pfiohConfig.ini file in the current working directory.
+
+        [--swift-storage]
+        If specified, use Swift as object storage.
+
+        [--test]
+        Run internal tests.
+
+        [-x|--desc]                                     
+        Provide an overview help page.
+
+        [-y|--synopsis]
+        Provide a synopsis help summary.
+
+        [--version]
+        Print internal version number and exit.
+
+        [-v|--verbosity <level>]
+        Set the verbosity level. "0" typically means no/minimal output. Allows for
+        more fine tuned output control as opposed to '--quiet' that effectively
+        silences everything.
+
+    EXAMPLES
+
+    Start ``pfioh`` in forever mode:
+
+            pfioh                                                   \\
+                --forever                                           \\
+                --port 5055                                         \\
+                --storeBase=/tmp                                    \\
+                --httpResponse                                      \\
+                --createDirsAsNeeded                                \\
+                --verbosity 1                                       \\
+                --ip %s
+
+    ''' % (str_defIP, str_defIP)
+    if ab_shortOnly:
+        return shortSynopsis
+    else:
+        return shortSynopsis + description
+
+
+parser  = ArgumentParser(description = str_desc, formatter_class = RawTextHelpFormatter)
+
+parser.add_argument(
+    '--ip',
+    action  = 'store',
+    dest    = 'ip',
+    default = str_defIP,
+    help    = 'Set the IP to expose.'
+)
+parser.add_argument(
+    '--port',
+    action  = 'store',
+    dest    = 'port',
+    default = '5055',
+    help    = 'Set the port to use.'
+)
+parser.add_argument(
+    '--version',
+    help    = 'If specified, print version number.',
+    dest    = 'b_version',
+    action  = 'store_true',
+    default = False
+)
+parser.add_argument(
+    '--forever',
+    help    = 'If specified, serve forever, otherwise terminate after single service.',
+    dest    = 'b_forever',
+    action  = 'store_true',
+    default = False
+)
+parser.add_argument(
+    '--storeBase',
+    action  = 'store',
+    dest    = 'storeBase',
+    default = '/tmp',
+    help    = 'Set the base path for internal storage.'
+)
+parser.add_argument(
+    '--enableTokenAuth',
+    action  = 'store_true',
+    help    = """Enables token based authorization and can be configured to look for a .ini file
+    or an openshift secret.""",
+    dest    = 'b_tokenAuth',
+    default = False
+)
+parser.add_argument(
+    '--tokenPath',
+    action = 'store',
+    help   = """Specify the absolute path to the token in the file system.
+    By default, this looks for the pfiohConfig.ini file in the current working directory.""",
+    dest   = 'str_tokenPath',
+    default= ''
+)
+
+# TODO: change to string arguments for each type of object store
+parser.add_argument(
+    '--swift-storage',
+    action  = 'store_true',
+    dest    = 'b_swiftStorage',
+    default = False,
+    help    = 'If specified, use Swift as object storage.'
+)
+parser.add_argument(
+    '--test',
+    help    = 'If specified, perform internal tests.',
+    dest    = 'b_test',
+    action  = 'store_true',
+    default = False
+)
+parser.add_argument(
+    '--httpResponse',
+    help    = 'If specified, return HTTP responses.',
+    dest    = 'b_httpResponse',
+    action  = 'store_true',
+    default = False
+)
+parser.add_argument(
+    '--createDirsAsNeeded',
+    help    = 'If specified, allow the service to create base storage directories as needed.',
+    dest    = 'b_createDirsAsNeeded',
+    action  = 'store_true',
+    default = False
+)
+parser.add_argument(
+    "-v", "--verbosity",
+    help    = "Set the verbosity level for app.",
+    dest    = 'verbosity',
+    default = "1")
+parser.add_argument(
+    "-x", "--desc",
+    help    = "Print a long synopsis.",
+    dest    = 'desc',
+    action  = 'store_true',
+    default = False
+)
+parser.add_argument(
+    "-y", "--synopsis",
+    help    = "Print a short synopsis.",
+    dest    = 'synopsis',
+    action  = 'store_true',
+    default = False
+) 
+
+args            = parser.parse_args()
+args.port       = int(args.port)
+
+if args.desc or args.synopsis:
+    print(str_desc)
+    if args.desc:
+        str_help     = synopsis(False)
+    if args.synopsis:
+        str_help     = synopsis(True)
+    print(str_help)
+    sys.exit(1)
+
+if args.b_version:
+    print("Version: %s" % str_version)
+    sys.exit(1)
+
+if args.b_swiftStorage:
+    server = pfioh.ThreadedHTTPServer((args.ip, args.port), SwiftStore)
+else:
+    server = pfioh.ThreadedHTTPServer((args.ip, args.port), MountDir) 
+
+server.setup(args = vars(args), desc = str_desc, ver = str_version)
+
+if args.b_test:
+    handler     = pfioh.StoreHandler(test = True)
+    handler.do_POST(
+        d_msg = {
+            "action": "hello",
+            "meta": {
+                "askAbout":     "sysinfo",
+                "echoBack":     "Hi there!"
+                }
+            }
+    )
+    sys.exit(0)
+
+if args.b_forever and not args.b_test:
+    server.serve_forever()
+else:
+    server.handle_request()
