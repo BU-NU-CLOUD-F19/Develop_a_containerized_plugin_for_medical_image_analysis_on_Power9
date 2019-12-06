@@ -1,4 +1,4 @@
-# Develop a containerized plugin for medical image analysis on Power9
+# Develop a Containerized Plugin for Medical Image Analysis on Power9
 
 # Background
 ChRIS is a collaborative project between Boston Children's Hospital and Red Hat. It is an open source framework that utilizes cloud technologies to bring medical analytics and allows health organizations to benefit from public computational power in addition to owning their data. One of its main charicteristics is allowing the developers to make medical analytic plugins that can be embedded into the Mass Open Cloud deployment. The creating of a plug-in is what we are doing with this project.
