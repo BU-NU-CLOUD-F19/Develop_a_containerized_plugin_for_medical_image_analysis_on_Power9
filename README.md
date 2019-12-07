@@ -112,7 +112,8 @@ Sprint planning is conducted on Taiga, which we are still learning how to use: h
 https://docs.google.com/presentation/d/1r1mF2JLrkIEE0HnX7CcssxO__eYmr4oz3VWf_d6U6EU/edit?usp=sharing
 
 # Final Demo Presentation
-https://docs.google.com/presentation/d/1GZrYl_EeKrZcqR-DsP34QPbXfkMqWcicQZNeKs4SeuQ/edit?usp=sharing
+Presentation: https://docs.google.com/presentation/d/1GZrYl_EeKrZcqR-DsP34QPbXfkMqWcicQZNeKs4SeuQ/edit?usp=sharing
+Video: 
   
   
   
