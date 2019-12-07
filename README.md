@@ -1,4 +1,5 @@
 # Develop a Containerized Plugin for Medical Image Analysis on Power9
+Mentor: Rudolph Pienaar of Boston Children's Hospital
 
 # Background
 ChRIS is a collaborative project between Boston Children's Hospital and Red Hat. It's an open source framework that utilizes cloud technologies to bring medical analytics and allows health organizations to benefit from public computational power in addition to owning their data. One of its main charicteristics is allowing the developers to make medical analytic plugins that can be embedded into the Mass Open Cloud deployment. The creating of a plug-in is what we are doing with this project.
@@ -109,6 +110,9 @@ Sprint planning is conducted on Taiga, which we are still learning how to use: h
 
 # Google Cloud Spanner Presentation
 https://docs.google.com/presentation/d/1r1mF2JLrkIEE0HnX7CcssxO__eYmr4oz3VWf_d6U6EU/edit?usp=sharing
+
+# Final Demo Presentation
+https://docs.google.com/presentation/d/1GZrYl_EeKrZcqR-DsP34QPbXfkMqWcicQZNeKs4SeuQ/edit?usp=sharing
   
   
   
