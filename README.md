@@ -41,15 +41,10 @@ It does not target:
   that use FreeSurfer on the MOC but are not users of the ChRIS platform. This project will only affect those who use the ChRIS system.
 
 # Scope and Features
-Our project is mostly within the scope of creating a ChRIS plugin. A ChRIS plugin is essentially a container that can interface with the larger ChRIS system, and can run a job. In our case, the plugin needs to run the FreeSurfer software. We need to containerize FreeSurfer so that we are able to use it in a ChRIS plugin. 
+Our minimum viable product was to containerize mri_convert application of the Freesurfer software package to run as ChRIS plugin on PowerPC machines and to implement this into the ChRIS system. To clarify, Freesurfer is an open-source brain imaging software package, and mri_convert is an application of this package that converts between different file formats.
 
-Our MVP is to containerize FreeSurfer for PowerPC and be able to use it in a ChRIS plugin.
-Our stretch goals are to integrate the plugin with the rest of the ChRIS system i.e give end users the option to use our plugin.
+Our original minimum viable product consisted of containerizing all of the Freesurfer software package, however compiling some of these packages was beyond our scope, so we scaled it down to just compiling mri_convert. We chose this application because it is the most widely used Freesurfer application for target users.
 
-* Feature: FreeSurfer is containerized as a ChRIS plugin
-* Feature: FreeSurfer compiles to PowerPC architecture
-* Feature: Flag in plugin --> denotes which architecture to use on the MOC (how can we make this more specific)
-* Feature: ChRIS is able to read and run PowerPC images on PowerPC machines and Intel images on Intel machines
 
 # Solution Concept
 
@@ -66,10 +61,13 @@ High Level Outline:
 Why PowerPC architecture? The goal is to successfully compile the containerized FreeSurfer plugin with PowerPC architecture because this architecture will decrease computation time. Power9 machines are optimzed for performing matrix operations, so using Power9 machines should give FreeSurfer a speed increase.
 
 Why is it containerized? A ChRIS plugin is a container that is run on the MOC machines. We need to containerize FreeSurfer so that we can use it in a ChRIS plugin. Containers allow us to run our ChRIS plugin on machines in the cloud without having to worry about the environment. 
+  - Decouple application from environment. in our case that means we can easily spin up a container on the p9 machine in the    moc.
+  - It was really difficult for us to get all this software set up and configured, and now if someone else wants to use it they don’t have to go through that pain point themselves
+  - Main benefit of containers over VM is that VMs each need to virtualize an OS but containers run on top of a shared OS, which makes them much more lightweight
+
 
 Why are we using Docker? We are using Docker because the existing ChRIS infrastructure uses Docker and we are using the existing ChRIS plugin template. The ChRIS infrastructure also uses OpenShift and our mentor said we should not concern ourselves with the inner workings of this. 
 
-Why are we cross-compiling onto PowerPC? Cross compiling is the process of compiling code for multiple platforms from one host. We may cross-compile because we are not sure what our capabilities will be on the MOC Power9 machines (can we ssh? will we have proper permissions? etc.). Cross-compiling gives us the ability to compile code on our personal machines for the PowerPC architecture. We are not yet sure if we will try to cross-compile or just compile natively on PowerPC, but we want to note cross-compiling as a possiblity.
  
 ![Product Structure](https://raw.githubusercontent.com/rschneid1/hello-world/master/images/Diagram.png)
 
