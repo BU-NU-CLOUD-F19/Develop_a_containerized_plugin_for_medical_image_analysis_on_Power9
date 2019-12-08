@@ -1,12 +1,16 @@
 # Develop a Containerized Plugin for Medical Image Analysis on Power9
 Mentor: Rudolph Pienaar of Boston Children's Hospital
 
+# Contributors
+- Nicole Elbeery
+- Quinn Meurer
+- Ryan Schneider
+- Erin Thomas
+
 # Background
-ChRIS is a collaborative project between Boston Children's Hospital and Red Hat. It's an open source framework that utilizes cloud technologies to bring medical analytics and allows health organizations to benefit from public computational power in addition to owning their data. One of its main charicteristics is allowing the developers to make medical analytic plugins that can be embedded into the Mass Open Cloud deployment. The creating of a plug-in is what we are doing with this project.
+ChRIS is a collaborative project between Boston Children's Hospital and Red Hat. It's an open source framework that utilizes cloud technologies to bring medical analytics and allows health organizations to benefit from public computational power in addition to owning their data. One of its main charicteristics is allowing the developers to make medical analytic plugins that can be embedded into the Mass Open Cloud deployment. The creating of a plug-in is what we are doing with this project. 
 
-ChRIS functions as a web service. A user will log into a ChRIS client, choose their program, and then upload their files to the ChRIS client. The ChRIS client will send the data to the ChRIS server which will then send it to the MOC network, where a container in the MOC will download the FreeSurfer plugin and run it. Currently this works on x86 machines. Once the container is created on PowerPC, the goal is that when ChRIS sends the user files and the FreeSurfer program, it will include a flag for the user to choose whether they want to run the process on PowerPC or x86. Running the process on Power9 machines in the MOC allows for a decrease in computational time. As a side note, a complete understanding of the inner workings of how ChRIS and the MOC stores information is beyond the scope of this project. Our advisor informed us that we should be concerned with how the flag is passed and creating the ChRIS plugin. However, he did give us a brief explanation, which is shown in the ChRIS platform overview.
-
-Our team will make the FreeSurfer container compatible with ChRIS over the course of the semester as we learn more about the ChRIS platform.
+ChRIS functions as a web service. A user will log into a ChRIS client, choose their program, and then upload their files to the ChRIS client. The ChRIS client will send the data to the ChRIS server which will then send it to the MOC network, where a container in the MOC will download the  plugin and run it. Currently this works on x86 machines. Once the container is created on PowerPC, the goal is that when ChRIS sends the user files and the program, it will include a flag for the user to choose whether they want to run the process on PowerPC or x86. Running the process on Power9 machines in the MOC allows for a decrease in computational time. As a side note, a complete understanding of the inner workings of how ChRIS and the MOC stores information is beyond the scope of this project. Our advisor informed us that we should be concerned with how the flag is passed and creating the ChRIS plugin. However, he did give us a brief explanation, which is shown in the ChRIS platform overview.
 
 To understand the goals and scope of our project, one needs to understand the architecture of the ChRIS platform.  
 The ChRIS documentation can be found here: https://github.com/FNNDSC/CHRIS_docs
@@ -20,9 +24,7 @@ The typical dataflow of ChRIS is as follows:
 4. The MOC communicates results to the server and the server communicates the results to the client.
 
 # Vision and Goals
-We will be creating a containerized plugin for ChRIS that enables end-users to do their image processing using FreeSurfer on Power9 computers in the Mass Open Cloud.
-
-(FreeSurfer is a software package used for processing and analyzing buman brain MRI images. This is what will be containerized to run on PowerPC.)
+We will be creating a containerized plugin for ChRIS that enables end-users to do their MRI image processing on Power9 computers in the Mass Open Cloud. We will be containerizing the mri_convert application of Freesurfer, which is an open-source brain imaging software package.
 
 High level goals include:
 * Compile mri_convert application of Freesurfer software package on PowerPC
