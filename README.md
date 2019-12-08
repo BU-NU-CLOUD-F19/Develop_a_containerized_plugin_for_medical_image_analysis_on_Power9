@@ -48,13 +48,15 @@ Our original minimum viable product consisted of containerizing all of the Frees
 
 # Solution Concept
 
-Global Architectural Structure Of the Project: 
+
+
+This is a system overview of how a user interacts with the ChRIS architecture, and, by extension, the MOC and our plugin. First, the client, such as a doctor, technician, or researcher, will upload data they want analyzed, like MRI images, and these will store in the ChRIS backend, which is called CUBE. The coordinator, which is called pfcon, will go into the CUBE storage and compress this data. The compressed data will then travel to the data handler, pfioh, where the zip file is unpacked. Sequentially, the coordinator  will the tell the manager, pman, the data is available and to run the necessary plugin, like mri_convert. The data handler will give the container the data as an input directory, and the manager will tell the container, made by us, to start running. The container will run and do what it needs to do and then send this data back to the data handler as an output directory. This data is then compressed by the data handler and then it travels back to the coordinator through CUBE and eventually to the client. The coordinator and CUBE exist in Boston Children’s Hospital computing architecture, whereas the manager, data handler, and container exist in the MOC.
 
 High Level Outline:
-* Create a container with FreeSurfer compiled to PowerPC architecture
-  - Compile FreeSurfer on x86 (Ubuntu or CentOS)
-  - Containerize FreeSurfer on x86
-  - Cross compile x86 to PowerPC
+* Create a container with mri_convert compiled to PowerPC architecture
+  - Compile mri_convert on PowerPC
+  - Containerize ChRIS plugin with mri_convert binary
+* Make ChRIS backend CUBE instance and implement with pman/pfioh
   
 ## Design Implications and Discussion:
 
@@ -104,12 +106,21 @@ Sprint planning is conducted on Taiga, which we are still learning how to use: h
   - Make ChRIS backend instance and integrate plugin
   
 # Open Questions
-- What is cross-compiling and why should we potentially use it to compile FreeSurfer on PowerPC architecture?
-- How do we use Docker to make a container? How do we use Docker Hub?
+- How do we use Docker to make a container?
 - What exactly is the function of the ChRIS plugin?
 
-# Risks (or opportunities?)
-- Lack of knowledge/general understanding (aka learning curve)
+# Potential Next Steps
+- Compile and containerize more of the Freesurfer applications
+- Compile and build more of the required packages for ppc64le (ann , petsc, VTK, etc…)
+    - This will allow us to build more of the Freesurfer applications
+- Deploy infrastructure (pman and pfioh) to all Power9 machines
+    - Integrate mri_convert ChRIS application with ChRIS system 
+- Add additional flagging capabilities to choose between x86 and Power9
+
+# The Bigger Picture
+- This plugin will enable users to maintain control over their own data and perform necessary analytics on this data
+- Contributes to the reduction of hospital costs for secure storage and computation
+- Helps healthcare organizations benefit from public cloud processing capabilities
 
 # Sprint Demo Presentations
 - Sprint 1 Demo: https://docs.google.com/presentation/d/1gTr5xhz9U68FB50PdQvl90KYEqc4Fye6mlfKmVhlSXU/edit?usp=sharing
