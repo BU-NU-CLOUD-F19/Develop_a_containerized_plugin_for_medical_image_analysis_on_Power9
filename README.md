@@ -25,13 +25,10 @@ We will be creating a containerized plugin for ChRIS that enables end-users to d
 (FreeSurfer is a software package used for processing and analyzing buman brain MRI images. This is what will be containerized to run on PowerPC.)
 
 High level goals include:
-* A container with FreeSurfer compiled for PowerPC architecture
-* Benchmark FreeSurfer performance on PowerPC vs. x86 architecture
-* A ChRIS plugin that uses the FreeSurfer container
-* Ability for end-users to select which architecture they want to run FreeSurfer on
-* Integration with the ChRIS client (allowing users to use ChRIS to run their data on the MOC and
-  get their results delivered in efficient time).
-
+* Compile mri_convert application of Freesurfer software package on PowerPC
+* Create a containerized ChRIS plugin with mri_convert binary
+* Build pman and pfioh on PowerPC
+* Communicate to pman and pfioh on PowerPC through ChRIS instance
 
 # Users and Personas
 The plugin will be used by Doctors/Technicians and Neuro-Researchers that need to run FreeSurfer, for example to process MRI scans. The goal of the overall ChRIS project is to make these computationally intensive tasks accessible through the cloud for medical professionals. Our specific project mainly targets existing ChRIS users that already are running FreeSurfer via ChRIS. We want to give these users the option to run FreeSurfer on Power9 machines, which will speed up the processing time.
