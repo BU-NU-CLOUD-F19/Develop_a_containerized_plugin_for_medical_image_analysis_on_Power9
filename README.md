@@ -134,7 +134,7 @@ https://docs.google.com/presentation/d/1r1mF2JLrkIEE0HnX7CcssxO__eYmr4oz3VWf_d6U
 
 # Final Demo Presentation
 - Presentation: https://docs.google.com/presentation/d/1GZrYl_EeKrZcqR-DsP34QPbXfkMqWcicQZNeKs4SeuQ/edit?usp=sharing
-- Video: 
+- Video: https://www.youtube.com/watch?v=I-P9DNBUEiw&feature=youtu.be
   
   
   
