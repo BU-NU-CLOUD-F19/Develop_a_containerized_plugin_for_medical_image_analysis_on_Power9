@@ -83,15 +83,28 @@ Why are we cross-compiling onto PowerPC? Cross compiling is the process of compi
 
 # Release Planning
 Sprint planning is conducted on Taiga, which we are still learning how to use: https://tree.taiga.io/project/onesphore-template-for-cloud-computing-fall-2019-bu-3/taskboard/demo-1-7
-* Release #1 (in 2 Weeks)
-  - Compile FreeSurfer on x86 (Ubuntu or CentOS)
-  - Containerize FreeSurfer on x86
+* Release #1 - September 26th
+  - Compile some of Freesurfer on x86
+  - Create a "Hello World!" ChRIS plugin
   
-* Release #2 (in 4 weeks)
-  - Cross compile x86 to PowerPC architecture
+* Release #2 - October 10th
+  - Compile some of Freesurfer on x86
+  - Figure out design options for containerization
   
-* Release #3 (in 6 weeks)
-  - Instantiate a flag that allows ChRIS to pick which architecture to use on MOC.
+* Release #3 - October 24th
+  - Compile and containerize Freesurfer on x86
+  - Create "Hello World!" container on PowerPC
+  
+* Release #4 - November 10th
+  - Create a containerized ChRIS plugin with mri_convert binary on x86
+  
+* Release #5 - November 21st
+  - Compile mri_convert on Power9
+  - Built pman and pfioh on Power9
+  - Containerize ChRIS plugin with mri_convert on Power9
+  
+* Release #6 - December 7th
+  - Make ChRIS backend instance and integrate plugin
   
 # Open Questions
 - What is cross-compiling and why should we potentially use it to compile FreeSurfer on PowerPC architecture?
