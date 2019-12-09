@@ -123,8 +123,9 @@ Sprint planning is conducted on Taiga, which we are still learning how to use: h
 ```
 docker run -v $(pwd)/<YOURINPUTDIRECTORY>:/usr/src/mri_convert_ppc64/input -v $(pwd)/<YOUROUTPUTDIRECTORY>:/usr/src/mri_convert_ppc64/output docker.io/quinnyyy/pl-mri_convert_ppc64 mri_convert_ppc64.py --executable /usr/bin/mri_convert --inputFile <YOURINPUTFILE> --outputFile <YOUROUTPUTFILE> input output
 ```
-- This will pull the docker image from dockerhub and run it. Your output file should appear in `<YOUROUTPUTDIRECTORY>` as `<YOUROUTPUTFILE`
+- This will pull the docker image from dockerhub and run it. Your output file should appear in `<YOUROUTPUTDIRECTORY>` as `<YOUROUTPUTFILE>`
 
+- You can then view the image at http://fnndsc.github.io/medview/
 
 # Sprint Demo Presentations
 - [Sprint 1 Demo](https://docs.google.com/presentation/d/1gTr5xhz9U68FB50PdQvl90KYEqc4Fye6mlfKmVhlSXU/edit?usp=sharing)
